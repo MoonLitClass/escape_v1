@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>수학 방탈출</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top,#1d2b4f,#0b0f18 70%);
+
+    color:white;
+
+    font-family:sans-serif;
+
+    padding:40px 20px;
+}
+
+h1{
+
+    text-align:center;
+
+    font-size:60px;
+
+    color:#00a2ff;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#cccccc;
+
+    margin-bottom:40px;
+
+    font-size:20px;
+
+}
+
+.grid{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.column{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+}
+
+.explorer{
+    border-top:6px solid #2ecc71;
+}
+
+.adventurer{
+    border-top:6px solid #f1c40f;
+}
+
+.master{
+    border-top:6px solid #e74c3c;
+}
+
+.course-title{
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:10px;
+
+}
+
+.course-desc{
+
+    text-align:center;
+
+    color:#cccccc;
+
+    margin-bottom:25px;
+
+}
+
+.stage{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    transition:0.2s;
+
+}
+
+.stage:hover{
+
+    transform:translateY(-3px);
+
+    background:
+    rgba(0,162,255,0.25);
+
+}
+
+.stage-title{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.stage-sub{
+
+    font-size:14px;
+
+    color:#cccccc;
+
+    margin-top:5px;
+
+}
+
+.locked{
+
+    background:
+    rgba(255,255,255,0.03);
+
+    color:#777777;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+
+}
+
+@media(max-width:1000px){
+
+    .grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    h1{
+
+        font-size:42px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🔐 수학 방탈출</h1>
+
+<div class="subtitle">
+원하는 모험을 선택하세요!
+</div>
+
+<div class="grid">
+
+<!-- 탐험가 -->
+
+<div class="column explorer">
+
+<div class="course-title">
+🟢 탐험가
+</div>
+
+<div class="course-desc">
+3~4학년 추천
+</div>
+
+<a class="stage" href="explorer/v1/">
+
+<div class="stage-title">
+🌲 신비한 숲
+</div>
+
+<div class="stage-sub">
+탐험가 코스 1
+</div>
+
+</a>
+
+<a class="stage" href="explorer/v2/">
+
+<div class="stage-title">
+🗺️ 잃어버린 지도
+</div>
+
+<div class="stage-sub">
+탐험가 코스 2
+</div>
+
+</a>
+
+<a class="stage" href="explorer/v3/">
+
+<div class="stage-title">
+🏝️ 보물섬의 비밀
+</div>
+
+<div class="stage-sub">
+탐험가 코스 3
+</div>
+
+</a>
+
+</div>
+
+<!-- 모험가 -->
+
+<div class="column adventurer">
+
+<div class="course-title">
+🟡 모험가
+</div>
+
+<div class="course-desc">
+5~6학년 추천
+</div>
+
+<a class="stage" href="adventurer/v1/">
+
+<div class="stage-title">
+🏛️ 고대 유적
+</div>
+
+<div class="stage-sub">
+모험가 코스 1
+</div>
+
+</a>
+
+<a class="stage" href="adventurer/v2/">
+
+<div class="stage-title">
+👑 사라진 왕국
+</div>
+
+<div class="stage-sub">
+모험가 코스 2
+</div>
+
+</a>
+
+<a class="stage" href="adventurer/v3/">
+
+<div class="stage-title">
+⏳ 시간의 미궁
+</div>
+
+<div class="stage-sub">
+모험가 코스 3
+</div>
+
+</a>
+
+</div>
+
+<!-- 마스터 -->
+
+<div class="column master">
+
+<div class="course-title">
+🔴 마스터
+</div>
+
+<div class="course-desc">
+도전자 전용
+</div>
+
+<a class="stage locked">
+
+<div class="stage-title">
+🔥 수학 신전
+</div>
+
+<div class="stage-sub">
+제작중
+</div>
+
+</a>
+
+<a class="stage locked">
+
+<div class="stage-title">
+🚪 차원의 문
+</div>
+
+<div class="stage-sub">
+제작중
+</div>
+
+</a>
+
+<a class="stage locked">
+
+<div class="stage-title">
+🔐 최후의 암호
+</div>
+
+<div class="stage-sub">
+제작중
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
