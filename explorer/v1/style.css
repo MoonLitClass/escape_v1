@@ -1,0 +1,610 @@
+/* =====================================================
+   Escape Engine v1.0
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top,#243b55,#141e30);
+
+    color:white;
+
+    font-family:
+    "Pretendard",
+    "Malgun Gothic",
+    sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+/* ===================================================== */
+
+.game-container{
+
+    width:100%;
+
+    max-width:1100px;
+
+}
+
+/* ===================================================== */
+/* 상단 정보 */
+/* ===================================================== */
+
+.top-bar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+#lifeBox{
+
+    width:240px;
+
+    font-size:24px;
+
+    line-height:1.5;
+
+    word-break:break-all;
+
+}
+
+#stageTitle{
+
+    flex:1;
+
+    text-align:center;
+
+    font-size:50px;
+
+    font-weight:bold;
+
+    color:#3cb4ff;
+
+    text-shadow:
+
+    0 0 10px #3cb4ff,
+
+    0 0 20px #3cb4ff;
+
+}
+
+#timer{
+
+    width:240px;
+
+    text-align:right;
+
+    font-size:30px;
+
+}
+
+/* ===================================================== */
+/* 이미지 */
+/* ===================================================== */
+
+#imageContainer{
+
+    position:relative;
+
+    background: #000;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 10px 40px rgba(0,0,0,.5);
+
+}
+
+#gameImage{
+
+    width:100%;
+
+    display:block;
+
+}
+
+/* ===================================================== */
+/* 터치 안내 */
+/* ===================================================== */
+
+#nextGuide{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:20px;
+
+    transform:translateX(-50%);
+
+    background:rgba(0,0,0,.55);
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-size:20px;
+
+    animation:blink 1s infinite;
+
+    user-select:none;
+
+}
+
+/* ===================================================== */
+/* 문제 */
+/* ===================================================== */
+
+#answerContainer{
+
+    display:none;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+#answerInput{
+
+    flex:1;
+
+    padding:18px;
+
+    font-size:22px;
+
+    border:none;
+
+    border-radius:15px;
+
+    outline:none;
+
+}
+
+#answerButton{
+
+    width:180px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#0078ff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#answerButton:hover{
+
+    background:#0d90ff;
+
+}
+
+/* ===================================================== */
+/* 힌트 */
+/* ===================================================== */
+
+#hintContainer{
+
+    margin-top:15px;
+
+}
+
+
+#hintPanel{
+
+    margin-top:10px;
+
+    padding:12px;
+
+    min-height:40px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    border-radius:10px;
+
+    color:white;
+
+    text-align:left;
+
+    line-height:1.6;
+
+    font-size:15px;
+
+    white-space:pre-line;
+
+}
+
+#hintButton{
+
+    display:none;
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#202938;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#hintButton:hover{
+
+    background:#314055;
+
+}
+
+/* ===================================================== */
+/* 진행도 */
+/* ===================================================== */
+
+#progressContainer{
+
+    margin-top:30px;
+
+}
+
+#progressBar{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+}
+
+.stage-dot{
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#555;
+
+}
+
+.stage-dot.active{
+
+    background:#3cb4ff;
+
+    box-shadow:
+
+    0 0 10px #3cb4ff;
+
+}
+
+.stage-dot.complete{
+
+    background:#2ecc71;
+
+}
+
+/* ===================================================== */
+/* 팝업 */
+/* ===================================================== */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.8);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.popup{
+
+    width:90%;
+
+    max-width:500px;
+
+    background:#202938;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+}
+
+.popup h1{
+
+    margin-bottom:20px;
+
+}
+
+.popup h2{
+
+    margin-bottom:20px;
+
+}
+
+.popup p{
+
+    margin-bottom:25px;
+
+    line-height:1.8;
+
+}
+
+.popup button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#0078ff;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+/* ===================================================== */
+
+@keyframes blink{
+
+    50%{
+
+        opacity:.25;
+
+    }
+
+}
+
+/* ===================================================== */
+/* 모바일 */
+/* ===================================================== */
+
+@media(max-width:900px){
+
+    .top-bar{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    #lifeBox{
+
+        width:100%;
+
+        text-align:center;
+
+        font-size:22px;
+
+    }
+
+    #stageTitle{
+
+        font-size:36px;
+
+    }
+
+    #timer{
+
+        width:100%;
+
+        text-align:center;
+
+        font-size:24px;
+
+    }
+
+    #answerContainer{
+
+        flex-direction:column;
+
+    }
+
+    #answerButton{
+
+        width:100%;
+
+    }
+
+    #nextGuide{
+
+        font-size:16px;
+
+        padding:10px 18px;
+
+    }
+
+}
+
+/* ===================================================== */
+/* 태블릿 */
+/* ===================================================== */
+
+@media(min-width:901px) and (max-width:1200px){
+
+    #stageTitle{
+
+        font-size:42px;
+
+    }
+
+}
+/* =====================================================
+   화면 흔들기
+===================================================== */
+
+.shake{
+
+    animation:shake .45s;
+
+}
+
+@keyframes shake{
+
+    0%{transform:translateX(0);}
+
+    20%{transform:translateX(-8px);}
+
+    40%{transform:translateX(8px);}
+
+    60%{transform:translateX(-8px);}
+
+    80%{transform:translateX(8px);}
+
+    100%{transform:translateX(0);}
+
+}
+
+
+/* =====================================================
+   정답
+===================================================== */
+
+.success{
+
+    animation:success .45s;
+
+}
+
+@keyframes success{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.03);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   버튼
+===================================================== */
+
+.button-click{
+
+    transform:scale(.96);
+
+}
+
+
+/* =====================================================
+   이미지
+===================================================== */
+
+#gameImage{
+
+    transition:
+
+    opacity .25s,
+
+    transform .25s;
+
+}
+
+/* ===============================
+   Hint Panel
+=============================== */
+
+.hintItem{
+
+    margin-bottom:6px;
+
+}
+
+.hintNumber{
+
+    display:block;
+
+    font-weight:bold;
+
+    color:#ffd54f;
+
+    margin-bottom:2px;
+
+}
+
+.hintText{
+
+    color:white;
+
+    line-height:1.3;
+
+}
